@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Presto24 - Home</title>
+  <script src="https://kit.fontawesome.com/1f7ac7518d.js" crossorigin="anonymous"></script>
+  <style>
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      background-color: rgba(82, 12, 12, 0.457);
+    }
+
+    .carousel img {
+      width: 100%;
+      height: 100%;
+      object-fit:contain;
+      display: none;
+    }
+
+    .carousel img.active {
+      display: block;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 1;
+    }
+
+    .carousel-btn.left {
+      left: 10px;
+    }
+
+    .carousel-btn.right {
+      right: 10px;
+    }
+  </style>
+</head>
+
+<body style="margin: 0px; font-family: system-ui, sans-serif;">
+  <!-- navbar -->
+  <div style="display:flex; height: 60px; width: 100%; background-color: rgb(82, 12, 12); align-items: center; justify-content: space-around;">
+    <a style="color: white;" href="index.html"><i class="fa-solid fa-house"></i></a>
+    <h3 style="color: white; font-weight: 900;">Presto24</h3>
+    <a style="color: white;" href="userlogin.html"><i class="fa-solid fa-user"></i></a>
+  </div>
+
+  <!-- mockup auto in offerta -->
+  <div style="display: flex; width: 100%; justify-content: center; margin-top: 40px;">
+    <div style="width: 90%; max-width: 900px; background-color: #fff; border: 0px solid rgb(82, 12, 12); border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.2); overflow: hidden;">
+
+      <!-- carosello -->
+      <div class="carousel">
+        <button class="carousel-btn left" onclick="prevSlide()">❮</button>
+        <img class="active" src="immagine1.png" alt="Audi fronte">
+        <img src="immagine2.png" alt="Audi retro">
+        <img src="immagine3.png" alt="Audi interni">
+        <button class="carousel-btn right" onclick="nextSlide()">❯</button>
+      </div>
+
+      <!-- contenuto -->
+      <div style="padding: 20px;">
+        <h2 style="margin-bottom: 10px;">Audi A4 2015 - €1.800</h2>
+        <div style="display: flex; flex-direction: row;">
+
+            <img src="marcone.png" alt="" style="border-radius: 100px; width: 30px; height: 30px; object-fit: fill;">
+            <address>&nbsp;&nbsp;&nbsp;Marcone78</address>
+
+        </div>
+        
+        <p style="font-style: italic; margin-bottom: 20px;">
+          "Vendo per passaggio a veicolo aziendale e inutilizzo. Auto perfetta per neopatentati o per chi cerca una seconda macchina economica e affidabile. Prezzo trattabile, ma solo per veri interessati, no perditempo"
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; font-size: 16px; color: rgb(73, 73, 73);">
+          <div><i class="fa-solid fa-gauge-high"></i> 32.000 km</div>
+          <div><i class="fa-solid fa-calendar-days"></i> Anno: 2015</div>
+          <div><i class="fa-solid fa-gas-pump"></i> Diesel</div>
+          <div><i class="fa-solid fa-gear"></i> Cambio Manuale</div>
+          <div><i class="fa-solid fa-car-side"></i> 5 Porte</div>
+          <div><i class="fa-solid fa-leaf"></i> EURO 5</div>
+          <div><i class="fa-solid fa-brush"></i> Colore: Grigio Argento</div>
+          <div><i class="fa-solid fa-check-circle"></i> Revisione: OK fino a 2026</div>
+        </div>
+
+        <div style="margin-top: 30px; font-weight: bold; font-size: 20px; color: rgb(82, 12, 12); border: 2px solid rgb(82, 12, 12); padding: 10px; text-align: center; border-radius: 10px;">
+          Contatta
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".carousel img");
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+        if (i === index) slide.classList.add("active");
+      });
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+  </script>
+</body>
+</html>
