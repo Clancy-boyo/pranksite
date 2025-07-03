@@ -48,6 +48,91 @@
   </style>
 </head>
 
+<style>
+  .hacked-screen {
+    background: black;
+    color: #00ff00;
+    font-family: monospace;
+    padding: 20px;
+    font-size: 16px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    background-color: #00ff00;
+    animation: blink 0.8s infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>
+
+<script>
+  setTimeout(() => {
+    document.body.innerHTML = '';
+    document.body.style.margin = '0';
+    document.body.style.backgroundColor = 'black';
+
+    const hackedDiv = document.createElement('div');
+    hackedDiv.className = 'hacked-screen';
+    document.body.appendChild(hackedDiv);
+
+    const messages = [
+      "Accessing iOS system...",
+      "Phone Number found: XX XXX XXX 5048",
+      "Location: IT",
+      "IP Address located: 192.168.1.34",
+      "Downloading personal data...",
+      "YOU HAVE BEEN HACKED gabry HA HA HA HA ! - Jokerz"
+    ];
+
+    let messageIndex = 0;
+
+    function typeLine(text, callback) {
+      const line = document.createElement('div');
+      hackedDiv.appendChild(line);
+
+      let charIndex = 0;
+      const cursor = document.createElement('span');
+      cursor.className = 'cursor';
+      line.appendChild(cursor);
+
+      const audio = new Audio("beep_hack_effect.mp3");
+
+      const interval = setInterval(() => {
+        if (charIndex < text.length) {
+          line.insertBefore(document.createTextNode(text[charIndex]), cursor);
+          audio.currentTime = 0;
+          audio.play();
+          charIndex++;
+        } else {
+          clearInterval(interval);
+          cursor.remove();
+          callback();
+        }
+      }, 30);
+    }
+
+    function typeAll() {
+      if (messageIndex >= messages.length) return;
+      typeLine(messages[messageIndex], () => {
+        messageIndex++;
+        setTimeout(typeAll, 600); // tempo tra una riga e l'altra
+      });
+    }
+
+    typeAll();
+  }, 10000); // parte dopo 8 secondi
+</script>
+
+
+
 <body style="margin: 0px; font-family: system-ui, sans-serif;">
   <!-- navbar -->
   <div style="display:flex; height: 60px; width: 100%; background-color: rgb(82, 12, 12); align-items: center; justify-content: space-around;">
@@ -76,9 +161,12 @@
 
             <img src="marcone.png" alt="" style="border-radius: 100px; width: 30px; height: 30px; object-fit: fill;">
             <address>&nbsp;&nbsp;&nbsp;Marcone78</address>
+            
 
         </div>
         
+        <p><address>Châtillon - AO</address></p>
+
         <p style="font-style: italic; margin-bottom: 20px;">
           "Vendo per passaggio a veicolo aziendale e inutilizzo. Auto perfetta per neopatentati o per chi cerca una seconda macchina economica e affidabile. Prezzo trattabile, ma solo per veri interessati, no perditempo"
         </p>
@@ -100,6 +188,10 @@
       </div>
     </div>
   </div>
+
+ 
+
+
 
   <script>
     let currentSlide = 0;
